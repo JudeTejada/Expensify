@@ -1,12 +1,10 @@
 import React from "react";
-import Theme from "./src/theme";
 
 import MainNavigator from "./src/navigator/Main";
+import WithFont from "./src/HOC/withFont";
 
-export default function App() {
-  return (
-    <Theme>
-      <MainNavigator />
-    </Theme>
-  );
+function App() {
+  return <MainNavigator />;
 }
+
+export default WithFont(App);

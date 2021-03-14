@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
@@ -9,11 +9,6 @@ const Navigator = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar
-        barStyle="dark-content"
-        translucent
-        backgroundColor="transparent"
-      />
       {user ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );

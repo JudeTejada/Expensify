@@ -9,32 +9,14 @@ const Stack = createStackNavigator();
 
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} headerMode="none">
-      <Stack.Screen
-        name="Intro"
-        component={Intro}
-        options={{
-          title: "Intro",
-          animationTypeForReplace: "pop",
-        }}
-      />
-
-      <Stack.Screen
-        name="Signin"
-        component={Signin}
-        options={{
-          title: "Login",
-          animationTypeForReplace: "pop",
-        }}
-      />
-      <Stack.Screen
-        name="Signup"
-        component={Signup}
-        options={{
-          title: "Sign Up Screen",
-          animationTypeForReplace: "pop",
-        }}
-      />
+    <Stack.Navigator
+      headerMode="none"
+      detachInactiveScreens={false}
+      screenOptions={{ animationEnabled: false }}
+    >
+      <Stack.Screen name="Intro" component={Intro} />
+      <Stack.Screen name="Signin" component={Signin} />
+      <Stack.Screen name="Signup" component={Signup} />
     </Stack.Navigator>
   );
 };
