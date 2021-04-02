@@ -1,31 +1,40 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
-import { CommonActions } from "@react-navigation/native";
-import InputGroup from "../../components/inputGroup/";
+import React, { useState } from "react";
 
-import WithFont from "../../HOC/withFont";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import * as firebase from "firebase";
+
+import Form from "../../components/form/";
 
 function Signin({ navigation }) {
+  const [error, setError] = useState(null);
+
+  const loginWithFirebase = (email, password) => {
+    if (!email || !password) {
+      return alert("Please Type all the required fields");
+    }
+
+    setError(null);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => setError(err.message));
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.mainTitle}>Expensify</Text>
       <Text style={styles.subTitle}>Login to your account</Text>
+      {error && <Text style={{ color: "#D03131" }}>{error}</Text>}
 
-      <InputGroup placeholder="Enter your email" text={"Email Address"} />
-      <InputGroup placeholder="Enter your password" text={"Password"} />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonPrimary}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonSecondary}>
-          <Text style={styles.buttonText}>Sign in with google</Text>
-          <Image
-            style={styles.logo}
-            source={require("../../../assets/icon/google-icon.png")}
-          />
-        </TouchableOpacity>
-      </View>
+      <Form buttonText={"Login"} handleSubmit={loginWithFirebase} />
+
+      <TouchableOpacity style={styles.buttonSecondary}>
+        <Text style={styles.buttonText}>Sign in with google</Text>
+        <Image
+          style={styles.logo}
+          source={require("../../../assets/icon/google-icon.png")}
+        />
+      </TouchableOpacity>
 
       <View style={styles.textLabelContainer}>
         <Text style={styles.textLabel}>Don't have an account yet?</Text>
@@ -84,6 +93,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "Poppins-bold",
     fontSize: 18,
+    marginTop: 15,
   },
 
   textLabelContainer: {
@@ -91,6 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 25,
   },
   buttonText: {
     fontFamily: "Poppins-bold",
