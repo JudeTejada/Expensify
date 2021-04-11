@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as firebase from "firebase";
+import { ButtonIcon, ButtonInlineText } from "../../components/Button/";
 
 import Form from "../../components/form/";
 
@@ -29,23 +30,18 @@ function Signin({ navigation }) {
 
       <Form buttonText={"Login"} handleSubmit={loginWithFirebase} />
 
-      <TouchableOpacity style={styles.buttonSecondary}>
-        <Text style={styles.buttonText}>Sign in with google</Text>
-        <Image
-          style={styles.logo}
-          source={require("../../../assets/icon/google-icon.png")}
-        />
-      </TouchableOpacity>
+      <ButtonIcon
+        buttonText="Sign in with Google"
+        icon={require("../../../assets/icon/google-icon.png")}
+        onPress={() => {}}
+      />
 
       <View style={styles.textLabelContainer}>
         <Text style={styles.textLabel}>Don't have an account yet?</Text>
-        <Text
-          style={styles.textLabelButton}
+        <ButtonInlineText
+          buttonText="Sign up"
           onPress={() => navigation.navigate("Signup")}
-        >
-          {" "}
-          Sign up
-        </Text>
+        />
       </View>
     </View>
   );
@@ -70,32 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 20,
   },
-  buttonContainer: {
-    marginVertical: 25,
-  },
-  buttonPrimary: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 15,
-    backgroundColor: "#6953F7",
-    color: "#fff",
-    fontFamily: "Poppins-bold",
-    fontSize: 18,
-    marginBottom: 12,
-  },
-  buttonSecondary: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    paddingVertical: 15,
-    backgroundColor: "#5E5884",
-    color: "#fff",
-    fontFamily: "Poppins-bold",
-    fontSize: 18,
-    marginTop: 15,
-  },
 
   textLabelContainer: {
     display: "flex",
@@ -104,20 +74,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 25,
   },
-  buttonText: {
-    fontFamily: "Poppins-bold",
-    fontSize: 18,
-    color: "#fff",
-  },
-  logo: {
-    marginLeft: 10,
-  },
+
   textLabel: {
     color: "#8c8a95",
-    fontFamily: "Poppins-light",
-  },
-  textLabelButton: {
-    color: "#8979F4",
     fontFamily: "Poppins-light",
   },
 });

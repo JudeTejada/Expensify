@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/Homepage/";
 import CategoriesScreen from "../screens/Categories/";
@@ -27,37 +28,74 @@ const MainNavigator = () => {
       <StatusBar barStyle="light-content" style="light" />
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: "#fff",
-          inactiveTintColor: "lightgray",
+          
+          activeTintColor: "#6953F7",
+          inactiveTintColor: "#fff",
           style: {
             backgroundColor: "#393650",
-            paddingBottom: 3,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           },
         }}
-        // screenOptions={({ route }) => ({
-        //   tabBarIcon: ({ focused, color, size }) => {
-        //     let iconName;
-
-        //     if (route.name === "Home") {
-        //       iconName = focused
-        //         ? "ios-information-circle"
-        //         : "ios-information-circle-outline";
-        //     } else if (route.name === "Settings") {
-        //       iconName = focused ? "ios-list-box" : "ios-list";
-        //     }
-
-        //     // You can return any component that you like here!
-        //     return <Ionicons name={iconName} size={size} color={color} />;
-        //   },
-        // })}
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Charts" component={ChartsScreen} />
-        <Tab.Screen name="Categories" component={CategoriesScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" size={20} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Charts"
+          component={ChartsScreen}
+          options={{
+            tabBarLabel: "Charts",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="google-analytics"
+                size={20}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          options={{
+            tabBarLabel: "Categories",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="format-list-bulleted"
+                size={20}
+                color={color}
+              />
+            ),
+          }}
+          name="Categories"
+          component={CategoriesScreen}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: "Settings",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="account-circle"
+                size={20}
+                color={color}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </>
   );
 };
 
+{
+  /*  */
+}
 export default MainNavigator;

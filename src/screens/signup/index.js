@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
-
+import { ButtonInlineText } from "../../components/Button/";
 import Form from "../../components/form/index";
 
 function Signin({ navigation }) {
@@ -26,12 +26,10 @@ function Signin({ navigation }) {
 
       <View style={styles.textLabelContainer}>
         <Text style={styles.textLabel}>Already have an account?</Text>
-        <Text
-          style={styles.textLabelButton}
+        <ButtonInlineText
+          buttonText="Sign in"
           onPress={() => navigation.navigate("Signin")}
-        >
-          Sign up
-        </Text>
+        />
       </View>
     </View>
   );
@@ -65,16 +63,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  logo: {
-    marginLeft: 10,
-  },
   textLabel: {
     color: "#8c8a95",
-    fontFamily: "Poppins-light",
-  },
-  textLabelButton: {
-    marginLeft: 10,
-    color: "#8979F4",
     fontFamily: "Poppins-light",
   },
 });
