@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import InputGroup from "../inputGroup";
+import { ButtonPrimary } from "../Button/index";
 
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 
 const Form = ({ buttonText, handleSubmit }) => {
   const [email, setEmail] = useState("");
@@ -24,33 +25,12 @@ const Form = ({ buttonText, handleSubmit }) => {
         onChangeText={(password) => setPassword(password)}
         value={password}
       />
-      <TouchableOpacity
-        style={styles.buttonPrimary}
+      <ButtonPrimary
         onPress={() => handleSubmit(email, password)}
-      >
-        <Text style={styles.buttonText}>{buttonText}</Text>
-      </TouchableOpacity>
+        buttonText={buttonText}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonPrimary: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 15,
-    backgroundColor: "#6953F7",
-    color: "#fff",
-    fontFamily: "Poppins-bold",
-    fontSize: 18,
-    marginTop: 40,
-  },
-  buttonText: {
-    fontFamily: "Poppins-bold",
-    fontSize: 18,
-    color: "#fff",
-  },
-});
 
 export default Form;

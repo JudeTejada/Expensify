@@ -13,6 +13,7 @@ function Signin({ navigation }) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(() => navigation.navigate("Signin"))
       .catch((err) => setError(err.message));
   };
 

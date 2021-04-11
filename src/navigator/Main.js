@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import * as firebase from "firebase";
+
+import {useAuth} from '../context/AuthProvider'
+
+
 import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
 
 const Navigator = () => {
-  const [user, setUser] = useState(null);
+  const {user} = useAuth();
+
+  console.log('USER',user)
 
   return (
     <NavigationContainer>
